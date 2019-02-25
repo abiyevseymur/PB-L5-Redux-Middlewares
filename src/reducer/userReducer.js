@@ -1,17 +1,22 @@
-import { SET_USER_DATA,REMOVE_DATA } from "../constants/constants";
+import { LOAD_USER_DATA,REMOVE_DATA,  REQUEST_BEGIN_USERS } from "../constants/constants";
 
 const initialState = {
     users:[],
-    isLoaded:false
+    isLoading:false
 }
 
 export const userReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_USER_DATA:
+        case LOAD_USER_DATA:
             return {
                 ...state,
                 users:action.payload,
-                isLoaded:true
+                isLoading:false
+            }
+        case REQUEST_BEGIN_USERS:
+            return{
+                ...state,
+                isLoading:true
             }
         case REMOVE_DATA:
             return{

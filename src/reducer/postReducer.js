@@ -1,17 +1,22 @@
-import { SET_POST_DATA } from "../constants/constants";
+import { LOAD_POST_DATA,  REQUEST_BEGIN_POSTS } from "../constants/constants";
 
 const initialState = {
     posts:[],
-    isLoaded:false
+    isLoading:false
 }
 
 export const postReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_POST_DATA:
+        case LOAD_POST_DATA:
             return {
                 ...state,
                 posts:action.payload,
-                isLoaded:true
+                isLoading:false
+            }
+        case REQUEST_BEGIN_POSTS:
+            return {
+                ...state,
+                isLoading:true
             }
         default:
             return state

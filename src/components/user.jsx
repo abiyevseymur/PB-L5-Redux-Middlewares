@@ -2,13 +2,6 @@ import React from 'react'
 import './../App.css'
 
 const Users = props => {
-
-    let btnF = e => {
-        const id = e.target.parentElement.id
-        props.remove(parseInt(id))
-    }
-  
-
     return (
         <table className="ui fixed table" >
             <thead>
@@ -24,21 +17,23 @@ const Users = props => {
                 </tr>
             </thead>
             <tbody>
-                {props.user.users.map(u => <tr key={u.id} id={u.id}>
-                    <td>{u.username}</td>
-                    <td>{u.name}</td>
-                    <td>{u.email}</td>
-                    <td>{u.address.city}</td>
-                    <td>{u.address.street}</td>
-                    <td>{u.phone}</td>
-                    <td>{u.website}</td>
-                    <td>{u.company.name}</td>
-                    <button id="btn" onClick={btnF}>Delete</button>
+            {props.loading ?  <tr><td className="ui active inline loader"></td></tr> :
+             
+                    props.user.users.map(u => <tr key={u.id}>
+                        <td>{u.username}</td>
+                        <td>{u.name}</td>
+                        <td>{u.email}</td>
+                        <td>{u.address.city}</td>
+                        <td>{u.address.street}</td>
+                        <td>{u.phone}</td>
+                        <td>{u.website}</td>
+                        <td>{u.company.name}</td>
+                        <td><button id="btn" onClick={() => props.remove(u.id)}>Delete</button></td>
+                    </tr>)}
 
-                </tr>)}
+                </tbody>
+  
 
-            </tbody>
         </table >)
 }
-
 export default Users;
